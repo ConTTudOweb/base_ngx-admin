@@ -1,17 +1,16 @@
 import { Injectable } from '@angular/core';
+import {Http} from "@angular/http";
+import {ServerDataSource} from "ng2-smart-table";
 
 @Injectable()
 export class BankService {
 
-  data = [{
-    code: '001',
-    description: 'Bank 001',
-  }, {
-    code: '002',
-    description: 'Bank 002',
-  }];
+  banks;
 
-  getData() {
-    return this.data;
+  constructor(private http: Http) {}
+
+  getBanks() {
+    this.banks = new ServerDataSource(this.http, { endPoint: '/api/banks', filterFieldKey: '#field#__contains' });
+    return this.banks;
   }
 }

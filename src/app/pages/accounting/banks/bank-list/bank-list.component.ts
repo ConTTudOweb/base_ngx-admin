@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { LocalDataSource } from 'ng2-smart-table';
+import { LocalDataSource, ServerDataSource } from 'ng2-smart-table';
 
 import { BankService } from '../../../../@core/data/bank.service';
+import {Http} from "@angular/http";
 
 @Component({
   selector: 'ngx-smart-table',
@@ -15,6 +16,7 @@ import { BankService } from '../../../../@core/data/bank.service';
 export class BankListComponent {
 
   settings = {
+    sortDirection: 'asc',
     add: {
       addButtonContent: '<i class="nb-plus"></i>',
       createButtonContent: '<i class="nb-checkmark"></i>',
@@ -41,11 +43,12 @@ export class BankListComponent {
     },
   };
 
-  source: LocalDataSource = new LocalDataSource();
+  // source: LocalDataSource = new LocalDataSource();
+  source: ServerDataSource;
 
-  constructor(private service: BankService) {
-    const data = this.service.getData();
-    this.source.load(data);
+  constructor(private service: BankService, http: Http) {
+    // this.source = new ServerDataSource(http, { endPoint: '/api/banks' });
+    this.source = this.service.getBanks();
   }
 
   onDeleteConfirm(event): void {
