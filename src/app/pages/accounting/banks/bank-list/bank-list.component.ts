@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { LocalDataSource, ServerDataSource } from 'ng2-smart-table';
+import { ServerDataSource } from 'ng2-smart-table';
 
 import { BankService } from '../../../../@core/data/bank.service';
-import {Http} from "@angular/http";
+import {Http} from '@angular/http';
 
 @Component({
   selector: 'ngx-smart-table',

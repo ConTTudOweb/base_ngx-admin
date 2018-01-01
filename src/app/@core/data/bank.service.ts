@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {Http} from "@angular/http";
-import {ServerDataSource} from "ng2-smart-table";
+import {Http} from '@angular/http';
+import {ServerDataSource} from 'ng2-smart-table';
 
 @Injectable()
 export class BankService {
