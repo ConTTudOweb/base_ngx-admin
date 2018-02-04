@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Http, Headers, RequestOptions} from '@angular/http';
 import {ServerDataSource} from 'ng2-smart-table';
-import {Observable} from 'rxjs';
+import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class BankService {
