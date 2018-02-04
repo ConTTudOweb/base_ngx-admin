@@ -28,7 +28,7 @@ export class BankService {
         .put(
           bank.url,
           JSON.stringify(bank),
-          this.optionsPost
+          this.optionsPost,
         )
         .map(response => response.json());
     } else {
