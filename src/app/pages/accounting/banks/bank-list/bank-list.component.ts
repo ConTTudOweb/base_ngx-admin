@@ -16,7 +16,6 @@ import {Http} from '@angular/http';
 export class BankListComponent {
 
   settings = {
-    sortDirection: 'asc',
     add: {
       addButtonContent: '<i class="nb-plus"></i>',
       createButtonContent: '<i class="nb-checkmark"></i>',
@@ -26,6 +25,7 @@ export class BankListComponent {
       editButtonContent: '<i class="nb-edit"></i>',
       saveButtonContent: '<i class="nb-checkmark"></i>',
       cancelButtonContent: '<i class="nb-close"></i>',
+      confirmSave: true,
     },
     delete: {
       deleteButtonContent: '<i class="nb-trash"></i>',
@@ -54,6 +54,21 @@ export class BankListComponent {
   onDeleteConfirm(event): void {
     if (window.confirm('Are you sure you want to delete?')) {
       event.confirm.resolve();
+    } else {
+      event.confirm.reject();
+    }
+  }
+
+  onEditConfirm(event): void {
+    if (window.confirm('Salvar?')) {
+      event.confirm.resolve();
+      console.log(event.newData);
+
+      this.service.saveBank(event.newData)
+        .subscribe(() => {
+          console.log('feitoooo');
+        });
+
     } else {
       event.confirm.reject();
     }
